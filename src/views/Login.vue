@@ -26,8 +26,6 @@
       <button type="submit" class="btn btn-primary" @click.prevent="login()">
         Entrar
       </button>
-      <br />
-      {{ form.email }} - {{ form.password }}
     </form>
   </div>
 </template>

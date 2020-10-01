@@ -9,8 +9,18 @@ export default async (to, from, next) => {
         path: '/login'
       })
     } else {
-      store.dispatch("auth/getAuthProfile")
-      next()
+        /* pegar perfil do token */
+        store.dispatch("auth/getAuthProfile")
+        .then(function(){
+          next()
+        })
+        .catch(err => {
+          alert(err)
+          next({
+            path: '/login'
+          })
+        })
+
     }
   }
   next()

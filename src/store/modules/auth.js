@@ -25,14 +25,18 @@ const actions = {
       })
   },
   
-  getAuthProfile ({ commit }) {    
-    return HTTP.get('/auth/profile')
-      .then(function (res) {
-        commit('setUser', res.data.user)
-        commit('setToken', res.data.token)
-      }).catch(function (err) {
-        console.error(err);
-      });
+  getAuthProfile ({ commit }) {  
+    return HTTP.get('/auth/profile', {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    .then(function (res) {
+      commit('setUser', res.data.user)
+      commit('setToken', res.data.token)
+    }).catch(function (err) {
+      console.error(err)
+    });
   }
 
 }
