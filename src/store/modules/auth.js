@@ -35,7 +35,7 @@ const actions = {
       commit('setUser', res.data.user)
       commit('setToken', res.data.token)
     }).catch(function (err) {
-      console.error(err)
+      return Promise.reject( err.response.data.error)
     });
   }
 
